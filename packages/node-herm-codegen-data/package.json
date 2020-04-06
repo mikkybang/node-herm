@@ -1,0 +1,23 @@
+{
+  "name": "node-herm-codegen-data",
+  "version": "1.0.0",
+  "description": "Generate Data Layer from Database Schema",
+  "main": "dist/index.js",
+  "author": "Eunovo",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "gts": "^1.1.2",
+    "typescript": "~3.7.0",
+    "@types/node": "^10.0.3"
+  },
+  "scripts": {
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm.cmd run compile",
+    "pretest": "npm.cmd run compile",
+    "posttest": "npm.cmd run check"
+  }
+}
