@@ -1,0 +1,12 @@
+{
+  "name": "node-herm-core",
+  "version": "1.0.0",
+  "description": "Core node-herm package",
+  "main": "dist/index.js",
+  "author": "Eunovo",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "tsc"
+  }
+}
