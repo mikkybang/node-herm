@@ -1,0 +1,17 @@
+{
+  "name": "node-herm-web",
+  "version": "1.0.0",
+  "description": "A web interface for node-herm to generate starter code",
+  "main": "index.js",
+  "author": "Eunovo",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "ejs": "^3.0.2",
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node index.js"
+  }
+}
