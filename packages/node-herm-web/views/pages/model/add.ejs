@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head') %>
+    <title>Node Herm|Add a model</title>
+</head>
+
+<body class='container'>
+    <header>
+        <%- include('../..//partials/header') %>
+    </header>
+
+    <div class="d-flex mt-5">
+
+        <div>
+            <%- include('../../partials/side-data', data) %>
+        </div>
+
+        <div class="flex-grow-1 ml-4">
+            <form action='/model/add' method="post" class='w-50 mx-auto needs-validation' novalidate>
+                <div class='form-group'>
+                    <label for='nameIn'>Model Name</label>
+                    <input class='form-control' id='nameIn' name='modelName' value="<%= model.name %>" required />
+                    <div class='invalid-feedback'>The Data Class needs a name</div>
+                </div>
+
+                <fieldset id="properties">
+                    <legend>
+                        Properties
+                        <button id='propAddBtn' class="ml-3 btn btn-outline-primary" type="button">
+                            Add
+                        </button>
+                    </legend>
+
+                    <% model.properties.forEach((p, i) => { %>
+                    <%- include('./property', p) %>
+                    <% }) %>
+                </fieldset>
+
+                <button class="btn btn-primary" type='submit'>
+                    Create Model
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <%- include('../../partials/scripts') %>
+    <script>
+        $('#propAddBtn').on('click', function (e) {
+            $('#properties').append(`<%- include('./property', { name: '', type: '' }) %>`);
+        });
+    </script>
+</body>
+
+</html>

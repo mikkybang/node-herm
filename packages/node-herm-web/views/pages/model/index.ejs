@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head') %>
+    <title>Node Herm|Models</title>
+</head>
+
+<body class='container'>
+    <header>
+        <%- include('../../partials/header') %>
+    </header>
+
+    <div class="d-flex mt-5">
+
+        <div>
+            <%- include('../../partials/side-data', data) %>
+        </div>
+
+        <div class="flex-grow-1 ml-4">
+
+            <div class="card-group">
+
+                <% data.models.forEach(model => { %>
+                <div class="card" style="width: 18rem">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= model.name %></h5>
+                        <a href="#" class="card-link">Edit</a>
+
+                        <h6 class="card-subtitle mt-4">Properties</h6>
+                    </div>
+
+                    <ul class="list-group list-group-flush mb-4">
+
+                        <% model.properties.forEach(property => { %>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div><%= property.name %></div>
+
+                            <div class="text-capitalize text-right">
+                                <%= property.type %>
+                            </div>
+                        </li>
+                        <% }) %>
+
+                    </ul>
+                </div>
+                <% }) %>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <%- include('../../partials/scripts') %>
+</body>
+
+</html>
