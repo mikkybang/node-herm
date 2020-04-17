@@ -13,11 +13,14 @@
 
     <div class="d-flex mt-5">
 
-        <div>
+        <div style="width: 20vw;">
             <%- include('../../partials/side-data', data) %>
         </div>
 
         <div class="flex-grow-1 ml-4">
+
+            <h2 class="mb-4">Add Model</h2>
+
             <form action='/model/add' method="post" class='w-50 mx-auto needs-validation' novalidate>
                 <div class='form-group'>
                     <label for='nameIn'>Model Name</label>
@@ -38,7 +41,7 @@
                     <% }) %>
                 </fieldset>
 
-                <button class="btn btn-primary" type='submit'>
+                <button class="btn btn-primary mt-3" type='submit'>
                     Create Model
                 </button>
             </form>

@@ -61,7 +61,11 @@ app.post('/model/add', function (req, res) {
             }
         ] 
     }
-    req.session.save((err) => console.log(err));
+    req.session.save((err) => {
+        if (err) {
+            console.log(err);
+        }
+    });
 
     res.redirect('/model/');
 });
