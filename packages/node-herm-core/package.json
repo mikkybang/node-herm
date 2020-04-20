@@ -2,7 +2,7 @@
   "name": "node-herm-core",
   "version": "1.0.0",
   "description": "Core node-herm package",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "author": "Eunovo",
   "license": "MIT",
   "private": false,
