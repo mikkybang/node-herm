@@ -1,4 +1,5 @@
 import { IClassDefinition } from "../classes/ClassDefinition";
+import { CodeBuilder } from "../code-builder";
 
 export class MongoSchemaGenerator {
 
@@ -7,20 +8,20 @@ export class MongoSchemaGenerator {
             classDef.name.substring(1);
         const schemaVar = `${classDef.name}Schema`;
         const modelVar = `${classNameInCap}`;
-        const imports = `import mongoose from "mongoose";`;
+        let codeBuilder = new CodeBuilder();
+        codeBuilder.line(`import mongoose from "mongoose";`);
 
-        let schema = `const ${schemaVar} = new mongoose.Schema({\n`;
+        const schemaBlock = codeBuilder
+            .block(`const ${schemaVar} = new mongoose.Schema(`);
         classDef.properties.map((prop) => {
-            schema += `    ${prop.name}: { type: ${prop.type} }\n`;
+            schemaBlock.line(`${prop.name}: { type: ${prop.type} }`);
         });
-        schema += `});\n`;
+        codeBuilder = schemaBlock.close(`)`);
 
-        const model = `const ${modelVar} = mongoose.model("${classNameInCap}", ${schemaVar});`;
-        const exportsCode = `export const ${modelVar};`;
+        codeBuilder.line(`const ${modelVar} = mongoose.model("${classNameInCap}", ${schemaVar});`);
+        codeBuilder.line(`export const ${modelVar};`);
 
-        const generatedCode = `${imports}\n${schema}\n${model}\n${exportsCode}\n`;
-
-        return generatedCode;
+        return codeBuilder.toCode();
     }
 
 }
