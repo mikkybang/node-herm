@@ -7,29 +7,18 @@ export class MongoSchemaGenerator {
             classDef.name.substring(1);
         const schemaVar = `${classDef.name}Schema`;
         const modelVar = `${classNameInCap}`;
-        const imports = `
-        import mongoose from "mongoose";
-        `;
+        const imports = `import mongoose from "mongoose";`;
 
-        let schema = `const ${schemaVar} = new mongoose.Schema({`;
+        let schema = `const ${schemaVar} = new mongoose.Schema({\n`;
         classDef.properties.map((prop) => {
-            schema += `
-                ${prop.name}: { type: ${prop.type} }
-            `;
+            schema += `    ${prop.name}: { type: ${prop.type} }\n`;
         });
-        schema += "});";
+        schema += `});\n`;
 
         const model = `const ${modelVar} = mongoose.model("${classNameInCap}", ${schemaVar});`;
         const exportsCode = `export const ${modelVar};`;
 
-        const generatedCode = `
-        ${imports}
-
-        ${schema}
-
-        ${model}
-        ${exportsCode}
-        `;
+        const generatedCode = `${imports}\n${schema}\n${model}\n${exportsCode}\n`;
 
         return generatedCode;
     }
