@@ -1,6 +1,8 @@
 const express = require('express');
 const parser = require('body-parser');
 const session = require('express-session');
+const { generate } = require('./CodeGenerator');
+
 const app = express();
 
 app.use(parser.urlencoded({ extended: false }));
@@ -69,6 +71,12 @@ app.post('/model/add', function (req, res) {
 
     res.redirect('/model/');
 });
+
+app.get('/generate', function (req, res) {
+    const path = __dirname + '/output/code.zip';
+    const data = req.session.data || { models: [] };
+    generate(path, data.models, (err) => res.status(200).sendFile(path));
+})
 
 app.listen(8080);
 console.log('Server started on port 8080');
