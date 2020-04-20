@@ -7,6 +7,21 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "ava"
+  },
+  "ava": {
+    "files": [
+      "tests/**/*"
+    ],
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "devDependencies": {
+    "ava": "^3.7.1"
   }
 }
